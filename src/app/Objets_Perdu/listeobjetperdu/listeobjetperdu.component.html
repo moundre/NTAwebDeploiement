@@ -1,0 +1,101 @@
+<app-header></app-header>
+<app-side-menu></app-side-menu>
+
+<div class="page-wrapper">
+  <div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title" style="font-size: 18px;">OBJET PERDU</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <div class="d-md-flex">
+                <ol class="breadcrumb ms-auto">
+                    <li><a  class="fw-normal text-success" style="font-weight: bold;"></a></li>
+                </ol>
+                
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+  </div>
+  <div class="container-fluid">
+
+    
+    <!-- ============================================================== -->
+    <div class="row">
+      <article class="col-md-12">
+      
+      <h2>LES OBJETS PERDU</h2>
+      <!-- Card Recemment perdu -->
+      <div class="cards-1 section-gray" >
+        <div class="container">
+          <div class="row" >
+            <div class="col-md-4" *ngFor="let listeP of listeAnnoncesPerdu | filter:searchText| paginate: { itemsPerPage: 6, currentPage: p }" >
+              <div class="card card-blog ">
+                <div class="card-image"
+                    style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                    <img src="{{listeP.photo}}" alt="" srcset="">
+                    <h6 style="font-size: 18px;" class="category text-white"> {{listeP.nom}}</h6>
+                    <div class="ripple-cont"></div>
+                  </div>
+                <div class="table">
+                  <div class="ftr">
+                    <div class="author">
+                      <i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Lieu : {{listeP.lieu}}</span>
+                    </div>
+                    <div class="stats">Couleut : {{listeP.couleur}} <i class=" fas fa-eraser"></i></div>
+                  </div>
+                  <div class="ftr"  *ngIf="listeP.nomC === '3'">
+                    <div class="author">
+                      <i class="fas fa-user" aria-hidden="true"></i> <span>Prénom : {{listeP.prenomProprietaireDoc}}</span>
+                    </div>
+                    <div class="stats">Nom : {{listeP.nomProprietaireDoc}}</div>
+                  </div>
+                  <div class="ftr">
+                    <div class="author" *ngIf="listeP.nomC === '3'"> <i class="fas fa-calendar"></i> Obtenu en : {{listeP.anneeObttion}}</div>
+                    <div class="author" *ngIf="listeP.nomC === '7'"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Model :{{listeP.model}}</span></div>
+                    <div class="stats" *ngIf="listeP.nomC === '3'">Né le : {{listeP.dateNaissanceDoc}} <i class=" fas fa-calendar"></i></div>
+                  </div>
+                <div class="ftr">
+                  <div class="author">
+                    <i class="fas fa-credit-card"></i><span>{{listeP.date  | date:'shortDate'}}</span>
+                  </div>
+                  <div id="pop" class="stats">
+                    <button style="font-size: 9px;padding: 5px; color: black;" type="button" class="btn btn-default " 
+                        popover="{{listeP.contenu}} "
+                        popoverTitle="Description" placement="top">
+                       Description
+                    </button>
+                    <i class="fas fa-list-alt"></i>
+                  </div>
+                </div>
+                <div class="ftr">
+                  <div class="author" (click)="detalUserAnnonce(listeP.utilisateur.id)">
+                    <a > <img src="../../../assets/Accueil/logoUserAccueil.png" alt="..."
+                        class="avatar img-raised"> <span
+                        style="font-size: 10px;">{{listeP.utilisateur.email}}</span> </a>
+                  </div>
+                  <div class="stats" (click)="desactiveAnnonce(listeP.id)">
+                     <i class="fa fa-clock-o"></i> <a>Retirer</a> </div>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+        </div>
+        <pagination-controls  nextLabel="Suiv" previousLabel="Pre" (pageChange)="p = $event"></pagination-controls>
+        
+      </div>
+    
+      
+
+      
+      </article>
+    </div>
+    <footer class="footer text-center">
+      
+      2021 © Ample Admin brought to you by <a
+            href="https://www.wrappixel.com/">wrappixel.com</a>
+    </footer>
+  </div>
+</div>
