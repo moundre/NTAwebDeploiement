@@ -44,7 +44,7 @@ export class ListeobjettrouveComponent implements OnInit {
       this.service.afficherUserById(id).subscribe(data=>{
         this.detailUser = data;
         const Toast = Swal.mixin({
-          imageUrl: '../../../assets/Accueil/logoUserAccueil.png',
+          imageUrl: 'assets/Accueil/logoUserAccueil.png',
           imageWidth: 100,
           imageHeight: 100,
           imageAlt: 'Custom image',
