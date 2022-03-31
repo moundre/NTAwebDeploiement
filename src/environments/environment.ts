@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  URL: 'http://localhost:8088/nta/api/v1'
+  // URL: 'http://localhost:8088/nta/api/v1',
+  URL: 'https://nta-api-objet.herokuapp.com/nta/api/v1'
+
 };
 
 /*
